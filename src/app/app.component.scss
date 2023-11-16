@@ -1,0 +1,11 @@
+:host {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+._container {
+    height: 80%;
+    aspect-ratio: 2/3;
+    max-width: 90vw;
+}
