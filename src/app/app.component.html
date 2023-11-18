@@ -1,29 +1,29 @@
 <div class="_container d-flex flex-column">
   <h3>Your generated password:</h3>
-  <form action="">
+  <form [formGroup]="passwordForm">
     <div class="input-group my-3">
       <input type="password" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
       <button class="input-group-text">👀</button>
     </div>
-    <div class="btn-group d-flex my-3" role="group" aria-label="Basic checkbox toggle button group">
-      <input type="checkbox" class="btn-check" id="inputabc" autocomplete="off" checked>
+    <div class="btn-group d-flex my-3" role="group" aria-label="Password options checkboxes" formGroupName="options">
+      <input type="checkbox" class="btn-check" id="inputabc" autocomplete="off" formControlName="lowercase">
       <label class="btn btn-outline-primary" for="inputabc">abc</label>
     
-      <input type="checkbox" class="btn-check" id="inputABC" autocomplete="off">
+      <input type="checkbox" class="btn-check" id="inputABC" autocomplete="off" formControlName="uppercase">
       <label class="btn btn-outline-primary" for="inputABC">ABC</label>
     
-      <input type="checkbox" class="btn-check" id="input123" autocomplete="off">
+      <input type="checkbox" class="btn-check" id="input123" autocomplete="off" formControlName="digits">
       <label class="btn btn-outline-primary" for="input123">123</label>
       
-      <input type="checkbox" class="btn-check" id="input!@#" autocomplete="off">
+      <input type="checkbox" class="btn-check" id="input!@#" autocomplete="off" formControlName="special">
       <label class="btn btn-outline-primary" for="input!@#">!@#</label>
     </div>
     <div class="my-3" role="group" aria-label="Password length range">
       <label for="passwordLength" class="form-label">Password length (<span></span>)</label>
-      <input type="range" class="form-range" min="4" value="13" max="30" id="passwordLength">
+      <input type="range" class="form-range" min="4" max="30" id="passwordLength" formControlName="length">
     </div>
     <div class="d-grid">
-      <button class="btn btn-primary" type="submit">GENERATE</button>
+      <button class="btn btn-primary" type="button" (click)="show()">GENERATE</button>
     </div>
   </form>
 </div>
