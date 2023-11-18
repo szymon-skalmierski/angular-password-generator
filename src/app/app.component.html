@@ -19,8 +19,8 @@
       <label class="btn btn-outline-primary" for="input!@#">!@#</label>
     </div>
     <div class="my-3" role="group" aria-label="Password length range">
-      <label for="passwordLength" class="form-label">Password length (<span></span>)</label>
-      <input type="range" class="form-range" min="4" max="30" id="passwordLength" formControlName="length">
+      <label for="passwordLength" class="form-label">Password length (<span>{{ passwordForm.controls.length.value }}</span>)</label>
+      <input type="range" class="form-range" min="4" max="32" id="passwordLength" formControlName="length">
     </div>
     <div class="d-grid">
       <button class="btn btn-primary" type="button" (click)="show()">GENERATE</button>

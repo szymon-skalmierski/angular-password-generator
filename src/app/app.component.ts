@@ -12,12 +12,12 @@ export class AppComponent {
   passwordForm = new FormGroup({
     generatedPassword: new FormControl(''),
     options: new FormGroup({
-      'lowercase': new FormControl(''),
-      'uppercase': new FormControl(''),
-      'digits': new FormControl(''),
-      'special': new FormControl('')
+      'lowercase': new FormControl(true),
+      'uppercase': new FormControl(false),
+      'digits': new FormControl(false),
+      'special': new FormControl(false)
     }),
-    length: new FormControl('')
+    length: new FormControl(18)
   });
 
   show() {
