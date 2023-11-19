@@ -2,7 +2,7 @@
   <h3>Your generated password:</h3>
   <form [formGroup]="passwordForm">
     <div class="input-group my-3">
-      <input type="password" class="form-control" aria-label="Username" aria-describedby="basic-addon1" value="541324" #passwordValue>
+      <input type="password" class="form-control" aria-label="Username" aria-describedby="basic-addon1" disabled #passwordValue>
       <button class="input-group-text" (click)="changeInputType(passwordValue)">👁‍🗨</button>
       <button class="input-group-text" (click)="copyInputValue(passwordValue)">📝</button>
     </div>
@@ -21,10 +21,10 @@
     </div>
     <div class="my-3" role="group" aria-label="Password length range">
       <label for="passwordLength" class="form-label">Password length (<span>{{ passwordForm.controls.length.value }}</span>)</label>
-      <input type="range" class="form-range" min="4" max="32" id="passwordLength" formControlName="length">
+      <input type="range" class="form-range" min="4" max="32" id="passwordLength" formControlName="length" required>
     </div>
     <div class="d-grid">
-      <button class="btn btn-primary" type="button" (click)="show()" [disabled]="!passwordForm.valid">GENERATE</button>
+      <button class="btn btn-primary" type="button" (click)="show(); generatePassword(passwordValue)" [disabled]="!passwordForm.valid">GENERATE</button>
     </div>
   </form>
 </div>

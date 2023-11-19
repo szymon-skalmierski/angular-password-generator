@@ -17,7 +17,7 @@ export class AppComponent {
       digits: new FormControl(false),
       special: new FormControl(false),
     }, [this.optionsGroupValidator()]),
-    length: new FormControl(18, [Validators.min(4), Validators.max(32)]),
+    length: new FormControl<number>(18, [Validators.min(4), Validators.max(32)]),
   });
 
   show() {
@@ -26,9 +26,9 @@ export class AppComponent {
 
   optionsGroupValidator(): ValidatorFn {
     return (group: AbstractControl): ValidationErrors | null => {
-      const controls = (group as FormGroup).controls;
-      for(let index in controls) {
-        if(controls[index].value) {
+      const optionsControls = (group as FormGroup).controls;
+      for(let index in optionsControls) {
+        if(optionsControls[index].value) {
           return null;
         }
       }
@@ -36,8 +36,22 @@ export class AppComponent {
     }
   }
 
-  generatePassword() {
+  generatePassword(input: HTMLInputElement) {
+    const optionsControls = (this.passwordForm.controls.options as FormGroup).controls;
+    const letters = 'abcdefghijklmnopqrstuvwxyz'
+    let allowedChars = '';
+    let generatedPassword = '';
 
+    if(optionsControls['lowercase'].value) allowedChars += letters;
+    if(optionsControls['uppercase'].value) allowedChars += letters.toUpperCase();
+    if(optionsControls['digits'].value) allowedChars += '1234567890';
+    if(optionsControls['special'].value) allowedChars += '!@#$%^&*()_-+={}[]\\|:;\'"<>,.?/';
+
+    for(let i=0; i<this.passwordForm.controls.length.value!; i++) {
+      generatedPassword += allowedChars[Math.floor(Math.random()*allowedChars.length)];
+    }
+    
+    input.value = generatedPassword;
   }
 
   changeInputType(input: HTMLInputElement) {
