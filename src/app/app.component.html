@@ -2,8 +2,9 @@
   <h3>Your generated password:</h3>
   <form [formGroup]="passwordForm">
     <div class="input-group my-3">
-      <input type="password" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
-      <button class="input-group-text">📝</button>
+      <input type="password" class="form-control" aria-label="Username" aria-describedby="basic-addon1" value="541324" #passwordValue>
+      <button class="input-group-text" (click)="changeInputType(passwordValue)">👁‍🗨</button>
+      <button class="input-group-text" (click)="copyInputValue(passwordValue)">📝</button>
     </div>
     <div class="btn-group d-flex my-3" role="group" aria-label="Password options checkboxes" formGroupName="options">
       <input type="checkbox" class="btn-check" id="inputabc" autocomplete="off" formControlName="lowercase">
@@ -23,7 +24,7 @@
       <input type="range" class="form-range" min="4" max="32" id="passwordLength" formControlName="length">
     </div>
     <div class="d-grid">
-      <button class="btn btn-primary" type="button" (click)="show()">GENERATE</button>
+      <button class="btn btn-primary" type="button" (click)="show()" [disabled]="!passwordForm.valid">GENERATE</button>
     </div>
   </form>
 </div>

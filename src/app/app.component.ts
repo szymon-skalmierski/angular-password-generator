@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validator, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -34,5 +34,17 @@ export class AppComponent {
       }
       return {noOptionChecked: true};
     }
+  }
+
+  generatePassword() {
+
+  }
+
+  changeInputType(input: HTMLInputElement) {
+    input.type==='password' ? input.type='text' : input.type='password';
+  }
+
+  copyInputValue(input: HTMLInputElement) {
+    navigator.clipboard.writeText(input.value);
   }
 }
