@@ -16,29 +16,13 @@ export class AppComponent {
       uppercase: new FormControl(false),
       digits: new FormControl(false),
       special: new FormControl(false),
-    }, [this.optionsGroupValidator()]),
+    }, [optionsGroupValidator()]),
     length: new FormControl<number>(18, [Validators.min(4), Validators.max(32)]),
   });
 
-  show() {
-    console.log(this.passwordForm);
-  }
-
-  optionsGroupValidator(): ValidatorFn {
-    return (group: AbstractControl): ValidationErrors | null => {
-      const optionsControls = (group as FormGroup).controls;
-      for(let index in optionsControls) {
-        if(optionsControls[index].value) {
-          return null;
-        }
-      }
-      return {noOptionChecked: true};
-    }
-  }
-
   generatePassword(input: HTMLInputElement) {
     const optionsControls = (this.passwordForm.controls.options as FormGroup).controls;
-    const letters = 'abcdefghijklmnopqrstuvwxyz'
+    const letters = 'abcdefghijklmnopqrstuvwxyz';
     let allowedChars = '';
     let generatedPassword = '';
 
@@ -60,5 +44,17 @@ export class AppComponent {
 
   copyInputValue(input: HTMLInputElement) {
     navigator.clipboard.writeText(input.value);
+  }
+}
+
+const optionsGroupValidator = (): ValidatorFn => {
+  return (group: AbstractControl): ValidationErrors | null => {
+    const optionsControls = (group as FormGroup).controls;
+    for(let index in optionsControls) {
+      if(optionsControls[index].value) {
+        return null;
+      }
+    }
+    return {noOptionChecked: true};
   }
 }

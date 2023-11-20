@@ -24,7 +24,7 @@
       <input type="range" class="form-range" min="4" max="32" id="passwordLength" formControlName="length" required>
     </div>
     <div class="d-grid">
-      <button class="btn btn-primary" type="button" (click)="show(); generatePassword(passwordValue)" [disabled]="!passwordForm.valid">GENERATE</button>
+      <button class="btn btn-primary" type="button" (click)="generatePassword(passwordValue)" [disabled]="!passwordForm.valid">GENERATE</button>
     </div>
   </form>
 </div>
